@@ -1,0 +1,33 @@
+.root{
+    flex-grow: 1;
+    align-items : center;
+  }
+
+.menuButton {
+    margin-right: 2px,
+  }
+
+.bar{
+    background-color: white;
+    color : black ;
+    box-shadow: none;
+
+}
+.title {
+    flex-grow: 1;
+    color : #1D7CBF;
+    font-weight : 700;
+    font-size : 20px;
+    display: flex;
+    align-items : center;
+  }
+
+.logo{
+      height : 28px;
+      width : 28px;
+      margin : 0 5px 0 5px;
+  }
+
+  .cart{
+    flex-grow: 2;
+  }
