@@ -1,13 +1,15 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
-import AddIcon from '@material-ui/icons/Add';
 import './AddMoreItems.css'
+import { useHistory } from 'react-router';
 
 function AddMoreItems(props) {
+    const history = useHistory();
     return (
-        <Button color = "secondary"  className= "add-items-container" >
-            <AddIcon style = {{fontSize :'medium'}} />
-             Add More Items
+        <Button color = "secondary" 
+         className= "add-items-container"
+         onClick = {() => history.push('/')} >
+            + Add More Items
         </Button>
     );
 }

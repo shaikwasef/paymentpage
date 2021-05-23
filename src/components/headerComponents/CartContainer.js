@@ -24,6 +24,13 @@ function CartContainer(props) {
         dispatch(addToCart(netCartQuantity));
     },[dispatch])
 
+    const handleClick = () => {
+        if(!netCartQuantity) {
+            alert('Please add items to cart');
+            return;
+        }
+       history.push('/summary')
+    }
 
     return (
         <div className="cart-container">
@@ -31,7 +38,7 @@ function CartContainer(props) {
             <Badge badgeContent={netCartQuantity} 
                 color = "error"
                 className = "cart"
-                onClick = {() => history.push('/summary')}>
+                onClick = {handleClick}>
                 <ShoppingCartOutlinedIcon style={{paddingTop:'2px'}} />
             </Badge>
                 }

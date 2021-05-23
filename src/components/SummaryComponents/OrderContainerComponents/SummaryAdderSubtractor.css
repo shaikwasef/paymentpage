@@ -3,11 +3,11 @@
 .sum-adder-subtractor-container{
     display: flex;
     align-items: center;
-    width : 80%;
-    border : 2px solid rgb(85, 85, 85);
+    border : 1px solid #616161;
+    color : #616161;
 }
 .sum-adder-subtractor-input{
-    flex : 1 0 auto;
+    flex : 1 0;
     text-align: center;
     font-family: 'Open Sans', sans-serif;
 }

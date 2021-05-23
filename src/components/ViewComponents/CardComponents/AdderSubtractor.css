@@ -4,7 +4,8 @@
     display: flex;
     align-items: center;
     width : 95%;
-    border : 2px solid #1D7CBF;
+    border : 1px solid #1D7CBF;
+    color : #1D7CBF;
 }
 .adder-subtractor-input{
     flex: 1;

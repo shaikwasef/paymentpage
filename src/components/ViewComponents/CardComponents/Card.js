@@ -4,8 +4,8 @@ import Button from '@material-ui/core/Button';
 import {addToCart} from "../../../actions/addToCart"
 import AdderSubtractor from './AdderSubtractor';
 import { useDispatch } from 'react-redux';
-import './Card.css'
-import { Paper } from '@material-ui/core';
+import addToOrder from "../../../utils/addToOrder"
+import './Card.css';
 
 function Card({cardData}) {
     const [cartState,setCardState] = useState(0);
@@ -26,12 +26,14 @@ function Card({cardData}) {
     const handleDecrement = () => {
         const quantity = cartState-1;
         sessionStorage.setItem(cardData.name,quantity);
+        addToOrder(cardData.name,quantity);
         storeNetCartQuantity(quantity);
         setCardState(quantity);
     }
     const handleIncrement = () => {
         const quantity = cartState+1;
         sessionStorage.setItem(cardData.name,quantity);
+        addToOrder(cardData.name,quantity);
         storeNetCartQuantity(quantity);
         setCardState(quantity);
     }

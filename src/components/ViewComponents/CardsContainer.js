@@ -9,6 +9,7 @@ function CardsContainer() {
        return  <Card key = {cardData.id} cardData = {cardData} />
     })
 
+    
     return (
         <div className="cards-container">
             {cards}

@@ -1,0 +1,26 @@
+
+ .price-heading{
+    font-size: 13px;
+    color : rgb(65, 65, 65);
+}
+
+.final-price > tr > td{
+    height: 5px;
+    padding: 16px;
+}
+
+.final-price > tr > td:nth-child(1){
+    white-space:normal;
+}
+
+.to-pay > tr > td {
+    height: 5px;
+    color:black;
+}
+
+.place-order{
+        background-color: #1D7CBF ;
+        width : 95%;
+        color:white;
+        border-radius : 5px;
+}

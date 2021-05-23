@@ -1,0 +1,8 @@
+.orders{
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    padding : 0 10px;
+    border : 1.3px solid rgb(207, 207, 207);
+    border-radius: 5px;
+}
