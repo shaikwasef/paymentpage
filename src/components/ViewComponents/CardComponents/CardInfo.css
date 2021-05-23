@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&display=swap');
+
+.card-info-container{
+    width : 95%;
+    display: flex;
+    flex-direction: column;
+    row-gap:10px;
+}
+
+
+.card-title{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.card-name{ 
+    max-width: 70%;
+    text-transform: capitalize;
+}
+.original-price{
+    text-decoration: line-through;
+    color:grey;
+    font-family: 'Open Sans', sans-serif;
+    margin-right: 10px;
+}
+
+.final-price{
+    font-family: 'Open Sans', sans-serif;
+    font-size:1.2rem;
+    color:black;
+}
+
+.card-description{
+    width : 200px;
+    font-size: 0.85rem;
+    color:rgb(173, 173, 173);
+    font-weight: 500;
+}
+
+p{
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+}
+
+.price{
+    display: flex;
+    align-items: center;
+}

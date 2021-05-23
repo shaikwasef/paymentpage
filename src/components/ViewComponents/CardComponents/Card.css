@@ -1,0 +1,36 @@
+.card-container{
+    flex: 0 0 300px;
+    width:300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap:20px;
+    margin-bottom: 40px;
+}
+.card-image{
+    width:inherit;
+}
+.add-cart-button{
+    width : 95%;
+    height : 35px;
+    color : #1D7CBF;
+    font-weight:800;
+    border : 2px solid  #1D7CBF;
+    padding: 0;
+    text-transform: none;
+}
+.MuiButton-label {
+    height:100%;
+}
+
+.add-cart-button :hover{
+    color : #ffffff;
+    background-color: #1D7CBF;
+    transition : all 0.3s ease-in;
+}
+
+@media screen and (max-width: 650px) {
+    .card-container{
+        width: 250px;
+    }
+  }
