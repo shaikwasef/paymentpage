@@ -1,5 +1,5 @@
 .order-summary{
-    width:fit-content;
-    align-self: flex-start;
+    width: max-content;
+    align-self: start;
     font-weight: 900;
 }

@@ -5,7 +5,7 @@ import "./HomeNavigator.css"
 
 function HomeNavigator(props) {
     return (
-        <Button className="navigator-container"  disableElevation>
+        <Button className="navigator-container"  >
             <KeyboardBackspaceIcon style={{marginRight:'10px'}}/>
              Back To Home
         </Button>

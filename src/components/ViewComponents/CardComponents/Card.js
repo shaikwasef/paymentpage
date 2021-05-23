@@ -5,6 +5,7 @@ import {addToCart} from "../../../actions/addToCart"
 import AdderSubtractor from './AdderSubtractor';
 import { useDispatch } from 'react-redux';
 import './Card.css'
+import { Paper } from '@material-ui/core';
 
 function Card({cardData}) {
     const [cartState,setCardState] = useState(0);
@@ -44,9 +45,10 @@ function Card({cardData}) {
         <div className="card-container">
             <img className = "card-image" alt={cardData.name} src={cardData.img_url}/>
             <CardInfo cardDataInfo={cardData}/>
-            {!cartState  ? <Button className="add-cart-button" onClick = {handleIncrement}>
+            {!cartState  ?<Button color = "secondary" className="add-cart-button" onClick = {handleIncrement}>
                     Add to cart
-            </Button> :
+                </Button>  
+                :
                 <AdderSubtractor onIncrement={handleIncrement} onDecrement={handleDecrement} quantity={cartState}/>
             }
         </div>
