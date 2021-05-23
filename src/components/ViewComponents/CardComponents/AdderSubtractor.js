@@ -8,14 +8,15 @@ export default function AdderSubtractor(props) {
     const {onIncrement,onDecrement,quantity} = props;
 
   return (
-    <Paper component="form" className="adder-subtractor-container">
+    <Paper  className="adder-subtractor-container">
         <Button type="reset" variant="contained" color="primary" onClick = {onDecrement}>
             -
-      </Button>
-      <Box component="div" display="inline" className="adder-subtractor-input">{quantity}</Box>
-      <Button type="reset" variant="contained" color="primary"  onClick = {onIncrement}>
+        </Button>
+        <Box component="div" display="inline" className="adder-subtractor-input">{quantity}</Box>
+        <Button type="reset" variant="contained" color="primary"  onClick = {onIncrement}>
             +
-      </Button>
+        </Button>
     </Paper>
+    
   );
 }

@@ -28,8 +28,10 @@ function CartContainer(props) {
     return (
         <div className="cart-container">
             { showCart && 
-            <Badge badgeContent={netCartQuantity} color="secondary"
-            style = {{cursor : 'pointer' , marginRight:'20px'}} onClick = {() => history.push('/summary')}>
+            <Badge badgeContent={netCartQuantity} 
+                color = "error"
+                className = "cart"
+                onClick = {() => history.push('/summary')}>
                 <ShoppingCartOutlinedIcon style={{paddingTop:'2px'}} />
             </Badge>
                 }

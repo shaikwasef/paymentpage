@@ -1,11 +1,8 @@
-.navigator-container{
+.add-items-container{
     width: max-content;
     display: flex;
     flex-direction: row;
     align-items: center;
     align-self:flex-start;
-    padding: 2px 5px 2px 0;
     text-transform:none;
-    background-color: white;
-    color : grey;
 }

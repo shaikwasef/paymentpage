@@ -1,0 +1,14 @@
+.label-container{
+    display: grid;
+    grid-template-columns: repeat(3,auto);
+    grid-gap:20px;
+    justify-items: center;
+    align-items: center;
+    width: 100%;
+    border : 1px solid grey;
+    color : grey;
+    border-radius: 2px ;
+}
+.label-container > h6{
+    white-space: nowrap;
+}
