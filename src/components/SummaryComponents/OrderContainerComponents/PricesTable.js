@@ -10,9 +10,23 @@ import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
 import './Table.css'
 import './PricesTable.css'
 import { Button } from '@material-ui/core';
+import { useSelector } from 'react-redux';
 
 
 export default function PricesPane() {
+  const cartItems = useSelector(state => state.updateCartReducer);
+
+  const pricePane = cartItems.map((item,index) => {
+      const quantity = item[1].quantity;
+      const price = item[1].price ;
+      const totalPrice = quantity*price ;
+      return (
+        <TableRow key = {index}>
+            <TableCell align="left">{`${quantity} \u00A0X\u00A0  $ ${price}.00 `}</TableCell>
+            <TableCell align="right">{`$ ${totalPrice}.00 `}</TableCell>
+         </TableRow>
+      )
+  });
 
   return (
     <TableContainer style = {{backgroundColor : 'inherit'}}  component={Paper}>
@@ -23,18 +37,7 @@ export default function PricesPane() {
           </TableRow>
         </TableHead>
         <TableBody>
-            <TableRow>
-              <TableCell align="left">2 &nbsp;X&nbsp;  $ 21.00 </TableCell>
-              <TableCell align="right">$ 42.00 </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell align="left">2 &nbsp;X&nbsp;  $ 21.00 </TableCell>
-              <TableCell align="right">$ 42.00 </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell align="left">2 &nbsp;X&nbsp;  $ 21.00 </TableCell>
-              <TableCell align="right">$ 42.00 </TableCell>
-            </TableRow>
+            {pricePane}
         </TableBody>
         <TableBody className="final-price">
             <TableRow >
@@ -43,7 +46,7 @@ export default function PricesPane() {
             </TableRow>
             <TableRow>
               <TableCell align="left">Delivery Fee</TableCell>
-              <TableCell align="right">- $5.00</TableCell>
+              <TableCell align="right">$5.00</TableCell>
             </TableRow>
             <TableRow>
               <TableCell align="left">Taxes and Charges &nbsp;

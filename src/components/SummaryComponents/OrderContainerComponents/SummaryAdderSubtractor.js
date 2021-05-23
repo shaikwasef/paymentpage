@@ -2,26 +2,32 @@ import React, { useEffect, useState } from 'react';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
-import addToCart from "../../../utils/addToOrder"
+import addToOrder from "../../../utils/addToOrder"
+import updatesToOrder from "../../../utils/updatesToOrder"
+import updateCartList from "../../../actions/updateCartList"
 import "./SummaryAdderSubtractor.css"
+import { useDispatch } from 'react-redux';
 
-function SummaryAdderSubtractor({name,quantity}) {
-
+function SummaryAdderSubtractor({name,quantity,price}) {
     const [itemQuantity , setItemQuantity] = useState(quantity);
+    const dispatch = useDispatch();
+
+    const makeUpdatesToCart = (quantity) => {
+        addToOrder(name,quantity,price);
+        const updatedCart = updatesToOrder(name,quantity,price);
+        dispatch(updateCartList(updatedCart));
+        setItemQuantity(quantity);
+    }
 
     const handleIncrement = () => {
         const incQuantity = itemQuantity+1;
-        addToCart(name,incQuantity);
-        sessionStorage.setItem(name,incQuantity);
-        setItemQuantity(incQuantity);
+        makeUpdatesToCart(incQuantity);
     } 
 
     const handleDecrement = () => {
         const decQuantity = itemQuantity - 1 ;
         if(!decQuantity) return;
-        addToCart(name,decQuantity);
-        sessionStorage.setItem(name,decQuantity);
-        setItemQuantity(decQuantity);
+        makeUpdatesToCart(decQuantity);
     }
 
     return (

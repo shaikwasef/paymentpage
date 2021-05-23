@@ -3,9 +3,10 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    align-self:flex-start;
+    align-self: flex-start;
     text-transform:none;
     padding: 0;
+    margin-bottom: 20px;
 }
 
 .add-items-container :hover{

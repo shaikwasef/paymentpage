@@ -1,13 +1,11 @@
-const addToOrder = (itemName , itemQuantity , itemPrice) => {
+const updatesToOrder = (name,quantity,price) => {
     let itemCart = new Map(JSON.parse(sessionStorage.getItem('itemCart')));
-    if(itemQuantity <=0 ){
-        itemCart.delete(itemName);
-        return;
-    }
-    const itemDetails = getItemObj(itemQuantity,itemPrice);
-    itemCart.set(itemName,itemDetails);
+    const newCartDetails = getItemObj(quantity,price);
+    itemCart.set(name,newCartDetails);
     sessionStorage.setItem('itemCart',JSON.stringify([...itemCart]));
+    return [...itemCart];
 }
+
 
 const getItemObj = (itemQuantity,itemPrice) => {
     return {
@@ -15,4 +13,5 @@ const getItemObj = (itemQuantity,itemPrice) => {
         price : itemPrice
     }
 }
-export default addToOrder;
+
+export default updatesToOrder;

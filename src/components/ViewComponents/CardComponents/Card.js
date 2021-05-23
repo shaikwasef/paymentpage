@@ -1,7 +1,7 @@
 import React , {useEffect, useState} from 'react';
 import CardInfo from './CardInfo'
 import Button from '@material-ui/core/Button';
-import {addToCart} from "../../../actions/addToCart"
+import addToCart from '../../../actions/addToCart'
 import AdderSubtractor from './AdderSubtractor';
 import { useDispatch } from 'react-redux';
 import addToOrder from "../../../utils/addToOrder"
@@ -10,6 +10,13 @@ import './Card.css';
 function Card({cardData}) {
     const [cartState,setCardState] = useState(0);
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        let itemCart = new Map(JSON.parse(sessionStorage.getItem('itemCart')));
+        if(!itemCart.size) return;
+        const itemDetails = itemCart.get(cardData.name);
+        itemDetails !== undefined ? setCardState(itemDetails.quantity) : setCardState(0);
+    },[cardData.name])
 
     const storeNetCartQuantity = (quantity) => {
         const netCartQuantity = JSON.parse(sessionStorage.getItem('netCartQuantity'));
@@ -23,24 +30,21 @@ function Card({cardData}) {
         }
     }
 
-    const handleDecrement = () => {
-        const quantity = cartState-1;
-        sessionStorage.setItem(cardData.name,quantity);
-        addToOrder(cardData.name,quantity);
-        storeNetCartQuantity(quantity);
-        setCardState(quantity);
-    }
-    const handleIncrement = () => {
-        const quantity = cartState+1;
-        sessionStorage.setItem(cardData.name,quantity);
-        addToOrder(cardData.name,quantity);
+    const makeUpdatesToCart = (quantity) => {
+        addToOrder(cardData.name,quantity,cardData.final_price);
         storeNetCartQuantity(quantity);
         setCardState(quantity);
     }
 
-    useEffect(() => {
-        setCardState(JSON.parse(sessionStorage.getItem(cardData.name)))
-    },[cardData.name])
+    const handleDecrement = () => {
+        const quantity = cartState-1;
+        makeUpdatesToCart(quantity);
+
+    }
+    const handleIncrement = () => {
+        const quantity = cartState+1;
+        makeUpdatesToCart(quantity);
+    }
     
 
     return (

@@ -4,7 +4,7 @@ import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 import avatar from '../../assets/avatar.jpg'
 import {useDispatch} from "react-redux"
 import { useSelector } from 'react-redux';
-import {addToCart} from "../../actions/addToCart"
+import addToCart from "../../actions/addToCart"
 import './CartContainer.css'
 import { useHistory ,useLocation } from 'react-router';
 
