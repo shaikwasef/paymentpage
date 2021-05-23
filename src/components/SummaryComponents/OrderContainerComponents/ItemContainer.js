@@ -15,7 +15,7 @@ function ItemContainer(props) {
             <h4>3.</h4>
             <h5>Travel Card</h5>
             <SummaryAdderSubtractor/>
-            uidhweiuhdiewhdoidewojd
+
         </div>
     );
 }
