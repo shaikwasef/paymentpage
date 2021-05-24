@@ -1,0 +1,22 @@
+.table{
+     max-width : 100%;
+}
+
+
+
+thead{
+   border-bottom : 1.5px solid rgb(207, 207, 207);
+}
+
+tbody{
+    border-bottom : 1.5px solid rgb(207, 207, 207); 
+ }
+
+ th{
+     white-space: nowrap;
+ }
+
+td{
+    height: 45px;
+    text-transform: capitalize;
+ }

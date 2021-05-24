@@ -1,0 +1,23 @@
+.star-container{
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    
+}
+.star{
+    background-color: #ebf7ff;
+    border-radius: 50%;
+}
+
+.line{
+    margin : 0 5px 0 5px;
+    width:40px;
+    height:1.5px;
+    background-color: #1D7CBF;
+}
+@media screen and (max-width: 700px) {
+    .star-container{
+        margin-top: 5px;
+    }
+  }

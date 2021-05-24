@@ -1,0 +1,47 @@
+.card-container{
+    flex: 0 0 300px;
+    width:300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap:20px;
+    margin-bottom: 40px;
+}
+.card-image{
+    width:100%;
+    box-shadow: 0px 40px 10px -25px rgba(194, 194, 194, 0.644);
+}
+.add-cart-button{
+    width : 95%;
+    border : 1px solid  #1D7CBF;
+    border-radius : 5px;
+    text-transform: none;
+}
+
+.card-container > .MuiBadge-root > .MuiBadge-badge{
+    color : white;
+    background-color: black;
+    margin-top : 30px;
+    margin-right :35px;
+    padding-left: 20px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    text-align: center;
+}
+.card-container > .MuiBadge-root > .MuiBadge-badge::After{
+    top: 100%;
+    left: 90px;
+    border: solid transparent;
+    content: " ";
+    position: absolute;
+    margin-left: -18px;
+    border-top: 4px solid rgb(0, 0, 0);
+    border-left : 0;
+    border-right: 4px solid transparent;
+}
+
+@media screen and (max-width: 650px) {
+    .card-container{
+        width: 250px;
+    }
+  }
