@@ -30,7 +30,7 @@ To run the app on your local pc use the command
  ### `npm start`
  
 ## Technologies and Libraries used <a name = "technologies_used"></a>
-React-JS , Redux , React-router , Material-ui , HTML , css.
+React-JS , Redux , React-router , Material-ui , HTML , CSS.
  
  
  
