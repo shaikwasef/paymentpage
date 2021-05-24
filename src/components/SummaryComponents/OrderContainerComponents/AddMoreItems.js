@@ -6,7 +6,7 @@ import { useHistory } from 'react-router';
 function AddMoreItems(props) {
     const history = useHistory();
     return (
-        <Button color = "secondary" 
+        <Button color = "primary" 
          className= "add-items-container"
          onClick = {() => history.push('/')} >
             + Add More Items

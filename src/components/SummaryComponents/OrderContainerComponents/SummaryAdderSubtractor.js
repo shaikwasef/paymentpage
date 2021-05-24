@@ -5,28 +5,38 @@ import Box from '@material-ui/core/Box';
 import addToOrder from "../../../utils/addToOrder"
 import updatesToOrder from "../../../utils/updatesToOrder"
 import updateCartList from "../../../actions/updateCartList"
+import {updateTotalPrice,updateSavings} from "../../../actions/priceCalculator"
 import "./SummaryAdderSubtractor.css"
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-function SummaryAdderSubtractor({name,quantity,price}) {
-    const [itemQuantity , setItemQuantity] = useState(quantity);
+function SummaryAdderSubtractor({name,details}) {
+    const totalPrice = useSelector(state => state.totalPriceReducer);
+    const totalSavings = useSelector(state => state.savingsPriceReducer); 
+    const [itemQuantity , setItemQuantity] = useState(0);
     const dispatch = useDispatch();
+    const {quantity,final_price,original_price} = details;
 
-    const makeUpdatesToCart = (quantity) => {
-        addToOrder(name,quantity,price);
-        const updatedCart = updatesToOrder(name,quantity,price);
+    useEffect(() => setItemQuantity(quantity) , [quantity]);
+
+    const makeUpdatesToCart = (updatedQuantity) => {
+        addToOrder(name,updatedQuantity,final_price,original_price);
+        const updatedCart = updatesToOrder(name,updatedQuantity,final_price,original_price);
         dispatch(updateCartList(updatedCart));
-        setItemQuantity(quantity);
+        setItemQuantity(updatedQuantity);
     }
 
     const handleIncrement = () => {
         const incQuantity = itemQuantity+1;
+        dispatch(updateSavings(totalSavings - (final_price-original_price)));
+        dispatch(updateTotalPrice(totalPrice + final_price));
         makeUpdatesToCart(incQuantity);
     } 
 
     const handleDecrement = () => {
         const decQuantity = itemQuantity - 1 ;
         if(!decQuantity) return;
+        dispatch(updateSavings(totalSavings + (final_price-original_price)));
+        dispatch(updateTotalPrice(totalPrice - final_price));
         makeUpdatesToCart(decQuantity);
     }
 

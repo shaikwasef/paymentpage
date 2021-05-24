@@ -25,7 +25,7 @@ function CartContainer(props) {
     },[dispatch])
 
     const handleClick = () => {
-        if(!netCartQuantity) {
+        if(netCartQuantity<=0) {
             alert('Please add items to cart');
             return;
         }

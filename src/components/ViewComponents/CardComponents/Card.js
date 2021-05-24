@@ -5,18 +5,29 @@ import addToCart from '../../../actions/addToCart'
 import AdderSubtractor from './AdderSubtractor';
 import { useDispatch } from 'react-redux';
 import addToOrder from "../../../utils/addToOrder"
+import Badge from '@material-ui/core/Badge';
+import updateCartList from "../../../actions/updateCartList"
+import updatesToOrder from '../../../utils/updatesToOrder';
 import './Card.css';
 
 function Card({cardData}) {
     const [cartState,setCardState] = useState(0);
     const dispatch = useDispatch();
+    const {name,final_price,original_price} = cardData;
+    const [discount,setDiscount] = useState(0);
+
+    useEffect(() => {
+        if(!original_price) return;
+        const discount = 100*(original_price-final_price)/original_price;
+        setDiscount(discount);
+    },[]);
 
     useEffect(() => {
         let itemCart = new Map(JSON.parse(sessionStorage.getItem('itemCart')));
         if(!itemCart.size) return;
-        const itemDetails = itemCart.get(cardData.name);
+        const itemDetails = itemCart.get(name);
         itemDetails !== undefined ? setCardState(itemDetails.quantity) : setCardState(0);
-    },[cardData.name])
+    },[name])
 
     const storeNetCartQuantity = (quantity) => {
         const netCartQuantity = JSON.parse(sessionStorage.getItem('netCartQuantity'));
@@ -31,7 +42,9 @@ function Card({cardData}) {
     }
 
     const makeUpdatesToCart = (quantity) => {
-        addToOrder(cardData.name,quantity,cardData.final_price);
+        addToOrder(name,quantity,final_price,original_price);
+        const updatedCartList = updatesToOrder(name,quantity,final_price,original_price);
+        dispatch(updateCartList(updatedCartList));
         storeNetCartQuantity(quantity);
         setCardState(quantity);
     }
@@ -46,12 +59,19 @@ function Card({cardData}) {
         makeUpdatesToCart(quantity);
     }
     
-
+      
     return (
-        <div className="card-container">
-            <img className = "card-image" alt={cardData.name} src={cardData.img_url}/>
+            <div className="card-container">  
+
+            {!discount ?  <img className = "card-image" alt={name} src={cardData.img_url}/> :
+            <Badge badgeContent={`${discount}% OFF`} > 
+                <img className = "card-image" alt={name} src={cardData.img_url}/>
+            </Badge>
+            }
+
             <CardInfo cardDataInfo={cardData}/>
-            {!cartState  ?<Button color = "secondary" className="add-cart-button" onClick = {handleIncrement}>
+            {!cartState  ?<Button color = "primary" 
+                className= "add-cart-button" onClick = {handleIncrement}>
                     Add to cart
                 </Button>  
                 :
@@ -62,3 +82,4 @@ function Card({cardData}) {
 }
 
 export default Card;
+

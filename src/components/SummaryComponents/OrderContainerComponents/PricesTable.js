@@ -7,26 +7,41 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
-import './Table.css'
-import './PricesTable.css'
 import { Button } from '@material-ui/core';
 import { useSelector } from 'react-redux';
+import './Table.css'
+import './PricesTable.css'
+
 
 
 export default function PricesPane() {
   const cartItems = useSelector(state => state.updateCartReducer);
+  const totalPrice = useSelector(state => state.totalPriceReducer);
+  const totalSavings = useSelector(state => state.savingsPriceReducer);
+  const deliveryFee = window.deliveryFee;
+  const taxes = window.taxes;
 
   const pricePane = cartItems.map((item,index) => {
-      const quantity = item[1].quantity;
-      const price = item[1].price ;
-      const totalPrice = quantity*price ;
+      const {quantity,final_price} = item[1];
+      const price = quantity*final_price ;
       return (
         <TableRow key = {index}>
-            <TableCell align="left">{`${quantity} \u00A0X\u00A0  $ ${price}.00 `}</TableCell>
-            <TableCell align="right">{`$ ${totalPrice}.00 `}</TableCell>
+            <TableCell align="left">{`${quantity} \u00A0X\u00A0  $ ${final_price.toFixed(2)} `}</TableCell>
+            <TableCell align="right">{`$  ${price.toFixed(2)} `}</TableCell>
          </TableRow>
       )
   });
+
+  const showSavings = () => {
+    const savings = Math.abs(totalSavings).toFixed(2);
+    if(!totalSavings) return '0';
+    return `-\u00A0 $ ${savings}`;
+  }
+
+  const showTotal = () => {
+    const total = Math.abs(totalPrice) - totalSavings + deliveryFee + taxes;
+    return `$ ${total.toFixed(2)}`
+  }
 
   return (
     <TableContainer style = {{backgroundColor : 'inherit'}}  component={Paper}>
@@ -42,22 +57,22 @@ export default function PricesPane() {
         <TableBody className="final-price">
             <TableRow >
               <TableCell align="left">Total Savings</TableCell>
-              <TableCell align="right">- $18.00</TableCell>
+              <TableCell align="right" style = {{color : '#03c6a8'}}>{showSavings()}</TableCell>
             </TableRow>
             <TableRow>
               <TableCell align="left">Delivery Fee</TableCell>
-              <TableCell align="right">$5.00</TableCell>
+              <TableCell align="right">{`$ ${deliveryFee.toFixed(2)}`}</TableCell>
             </TableRow>
             <TableRow>
               <TableCell align="left">Taxes and Charges &nbsp;
               <ErrorOutlineIcon style = {{fontSize : 'medium' , verticalAlign:'text-top'}} /></TableCell>
-              <TableCell align="right">$2.00</TableCell>
+              <TableCell align="right">{`$ ${taxes.toFixed(2)}`}</TableCell>
             </TableRow>
         </TableBody>
         <TableBody className="to-pay">
             <TableRow >
               <TableCell align="left">To Pay</TableCell>
-              <TableCell align="center" style = {{fontSize : '16px'}}>$91.00</TableCell>
+              <TableCell align="center" style = {{fontSize : '16px'}}>{showTotal()}</TableCell>
             </TableRow>
             <TableRow >
               <TableCell className = "price-heading"align="center" colSpan={2}>

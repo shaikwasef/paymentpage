@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -6,22 +6,13 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import updateCartList from "../../../actions/updateCartList"
 import SummaryAdderSubtractor from './SummaryAdderSubtractor';
-import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import "./Table.css"
 
 
 export default function ItemTable() {
-    const [itemCart , setItemCart] = useState([]);
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        const itemCart = JSON.parse(sessionStorage.getItem('itemCart'));
-        setItemCart(itemCart);
-        dispatch(updateCartList(itemCart));
-        console.log(itemCart);
-    },[dispatch])
+    const itemCart = useSelector(state => state.updateCartReducer);
 
     const tableItems = itemCart.map((item,index) => {
         return (
@@ -29,8 +20,7 @@ export default function ItemTable() {
               <TableCell align="center">{`${index+1}.`}</TableCell>
               <TableCell align="center" >{item[0]}</TableCell>
               <TableCell align="center"><SummaryAdderSubtractor name = {item[0]} 
-              quantity = {item[1].quantity}
-              price = {item[1].price}/>
+              details = {item[1]}/>
               </TableCell>
             </TableRow>
         );

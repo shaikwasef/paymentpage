@@ -2,6 +2,8 @@
      max-width : 100%;
 }
 
+
+
 thead{
    border-bottom : 1.5px solid rgb(207, 207, 207);
 }
@@ -16,6 +18,5 @@ tbody{
 
 td{
     height: 45px;
-    white-space: nowrap;
     text-transform: capitalize;
  }

@@ -1,5 +1,5 @@
 .order-container{
-    width : 100%;   
+    width: 100%;
     display: grid;
     grid-template-columns: 1.4fr 1fr;
     grid-gap: 20px ;

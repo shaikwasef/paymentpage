@@ -7,15 +7,16 @@
 .final-price > tr > td{
     height: 5px;
     padding: 16px;
+    
 }
-
-.final-price > tr > td:nth-child(1){
-    white-space:normal;
+.final-price > tr > td:nth-child(n+2){
+   white-space: nowrap;
 }
 
 .to-pay > tr > td {
     height: 5px;
     color:black;
+    white-space:nowrap;
 }
 
 .place-order{
@@ -23,4 +24,5 @@
         width : 95%;
         color:white;
         border-radius : 5px;
+        margin-bottom: 30px;
 }

@@ -1,18 +1,23 @@
-const addToOrder = (itemName , itemQuantity , itemPrice) => {
+const addToOrder = (...args) => {
+    const name = args[0];
+    const [quantity,finalPrice,originalPrice] = args.splice(1);
     let itemCart = new Map(JSON.parse(sessionStorage.getItem('itemCart')));
-    if(itemQuantity <=0 ){
-        itemCart.delete(itemName);
-        return;
+    if(quantity <=0 ){
+        itemCart.delete(name);
+        sessionStorage.setItem('itemCart',JSON.stringify([...itemCart]));
+        return [...itemCart];
     }
-    const itemDetails = getItemObj(itemQuantity,itemPrice);
-    itemCart.set(itemName,itemDetails);
+    const itemDetails = getItemObj(quantity,finalPrice,originalPrice);
+    itemCart.set(name,itemDetails);
     sessionStorage.setItem('itemCart',JSON.stringify([...itemCart]));
 }
 
-const getItemObj = (itemQuantity,itemPrice) => {
+const getItemObj = (quantity,finalPrice,originalPrice) => {
+    if(!originalPrice) originalPrice = finalPrice;
     return {
-        quantity : itemQuantity ,
-        price : itemPrice
+        quantity : quantity ,
+        final_price : finalPrice,
+        original_price : originalPrice 
     }
 }
 export default addToOrder;
