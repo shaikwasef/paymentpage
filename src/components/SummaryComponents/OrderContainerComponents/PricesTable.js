@@ -34,7 +34,6 @@ export default function PricesPane() {
 
   const showSavings = () => {
     const savings = Math.abs(totalSavings).toFixed(2);
-    if(!totalSavings) return '0';
     return `-\u00A0 $ ${savings}`;
   }
 

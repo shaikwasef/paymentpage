@@ -20,7 +20,7 @@ function Card({cardData}) {
         if(!original_price) return;
         const discount = 100*(original_price-final_price)/original_price;
         setDiscount(discount);
-    },[]);
+    },[original_price,final_price]);
 
     useEffect(() => {
         let itemCart = new Map(JSON.parse(sessionStorage.getItem('itemCart')));
